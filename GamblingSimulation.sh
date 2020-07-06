@@ -1,10 +1,13 @@
 
 #!/bin/bash -x
 
-totalAmount=100
 betAmount=1
-#read -p "Enter the times" n
-for(( i=0; $totalAmount<150 && $totalAmount>0; i++ ))
+day=0
+echo  "starting the  game"
+while [[ $day -lt 20 ]]
+do
+totalAmount=100
+for(( i=0; (( $totalAmount < 150 )) && (( $totalAmount > 50 )); i++ ))
 do
 betResult=$(( (RANDOM%2) +1 ))
 if [ $betResult -eq 1 ]
@@ -14,11 +17,13 @@ if [ $betResult -eq 1 ]
       ((totalAmount--));
 fi
 done
-if [ $totalAmount -ge 150 ]
-then
-  echo "Gambler stopped and won !!" $totalAmount
-elif [ $totalAmount -le 50 ]
-  then
-echo "Gambler stopped and lost !!" $totalAmount
-fi
+((day++))
 
+if [ $totalAmount -eq 150 ]
+then
+  echo "Gambler stopped and won for day"$day" amount !!" $totalAmount
+elif [ $totalAmount -eq 50 ]
+  then
+echo "Gambler stopped and lost for day"$day" amount  !!" $totalAmount
+fi
+done
