@@ -3,22 +3,23 @@
 
 totalAmount=100
 betAmount=1
-#read -p "Enter the times" n
-for(( i=0; $totalAmount<150 && $totalAmount>0; i++ ))
+
+for(( i=0; (( $totalAmount < 150 )) && (( $totalAmount > 50 )); i++ ))
 do
-betResult=$(( (RANDOM%2) +1 ))
-if [ $betResult -eq 1 ]
-  then
+ betResult=$(( (RANDOM%2) +1 ))
+ if [ $betResult -eq 1 ]
+   then
       ((totalAmount++));
-  else
+   else
       ((totalAmount--));
-fi
+ fi
 done
-if [ $totalAmount -ge 150 ]
-then
-  echo "Gambler stopped and won !!" $totalAmount
-elif [ $totalAmount -le 50 ]
+
+if [ $totalAmount -eq 150 ]
+ then
+    echo "Gambler stopped and won !! and the amount" $totalAmount
+ elif [ $totalAmount -eq 50 ]
   then
-echo "Gambler stopped and lost !!" $totalAmount
+    echo "Gambler stopped and lost !! and the amount" $totalAmount
 fi
 
