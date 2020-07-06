@@ -9,13 +9,13 @@ do
 totalAmount=100
 for(( i=0; (( $totalAmount < 150 )) && (( $totalAmount > 50 )); i++ ))
 do
-betResult=$(( (RANDOM%2) +1 ))
-if [ $betResult -eq 1 ]
-  then
+ betResult=$(( (RANDOM%2) +1 ))
+ if [ $betResult -eq 1 ]
+   then
       ((totalAmount++));
-  else
+   else
       ((totalAmount--));
-fi
+ fi
 done
 ((day++))
 
