@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DAY=0
-MAXDAY=5
+MAXDAY=30
 MAX_STAKE=1.5
 MIN_STAKE=0.5
 dayStart=0
@@ -37,20 +37,20 @@ function MonthCalculation()
 			  result="won"
 			  dayProfit=$(($dayStart))
 
-			  if [ $dayProfit > $max_Win ]
+			  if [ $dayProfit -gt $max_Win ]
 			    then
 				 max_Win=$(($dayProfit))
-				 max_Win_Day=$DAY
+				 max_Win_Day=$(($DAY))
 			  fi
 		   elif [ $dayStart == $percentMinStake ]
 			 then
 			   result="lost"
 			   dayLoss=$dayStart
 
-			   if [ $dayLoss > $max_Loss ]
+			   if [ $dayLoss -gt $max_Loss ]
 				 then
-				  max_Loss=$dayLoss
-				  max_Loss_Day=$DAY
+				  max_Loss=$(($dayLoss))
+				  max_Loss_Day=$(($DAY))
 			   fi
 		   fi
 			echo "Gambler stopped and " $result " for day"$DAY" amount  !!" $dayStart
