@@ -1,7 +1,6 @@
 
 #!/bin/bash -x
 
-
 DAY=0
 MAXDAY=30
 MAX_STAKE=150
@@ -20,15 +19,13 @@ while [[ $DAY -lt MAXDAY ]]
             ((TOTAL_AMOUNT--));
        fi
   done
-  ((DAY++))
-
-
-  if [ $TOTAL_AMOUNT==MAX_STAKE ]
-    then
-        result="won"
-  elif [ $TOTAL_AMOUNT==MIN_STAKE ]
-    then
-       result="lost"
-   fi
-      echo "Gambler stopped and " $result " for day"$DAY" amount  !!" $TOTAL_AMOUNT
+   ((DAY++))
+       if [ $TOTAL_AMOUNT==MAX_STAKE ]
+        then
+          result="won"
+       elif [ $TOTAL_AMOUNT==MIN_STAKE ]
+         then
+           result="lost"
+       fi
+         echo "Gambler stopped and " $result " for day"$DAY" amount  !!" $TOTAL_AMOUNT
 done
