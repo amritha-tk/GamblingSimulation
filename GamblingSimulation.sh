@@ -1,30 +1,34 @@
 
 #!/bin/bash -x
 
-betAmount=1
-day=0
+
+DAY=0
+MAXDAY=30
+MAX_STAKE=150
+MIN_STAKE=50
 echo  "starting the  game"
-while [[ $day -lt 20 ]]
+while [[ $DAY -lt MAXDAY ]]
  do
-  totalAmount=100
-  for(( i=0; (( $totalAmount < 150 )) && (( $totalAmount > 50 )); i++ ))
+  TOTAL_AMOUNT=100
+  for(( i=0; (( $TOTAL_AMOUNT < MAX_STAKE )) && (( $TOTAL_AMOUNT > MIN_STAKE )); i++ ))
     do
       betResult=$(( (RANDOM%2) +1 ))
        if [ $betResult -eq 1 ]
          then
-            ((totalAmount++));
+            ((TOTAL_AMOUNT++));
         else
-            ((totalAmount--));
+            ((TOTAL_AMOUNT--));
        fi
   done
-  ((day++))
+  ((DAY++))
 
 
-  if [ $totalAmount -eq 150 ]
+  if [ $TOTAL_AMOUNT==MAX_STAKE ]
     then
-      echo "Gambler stopped and won for day"$day" amount !!" $totalAmount
-  elif [ $totalAmount -eq 50 ]
+        result="won"
+  elif [ $TOTAL_AMOUNT==MIN_STAKE ]
     then
-      echo "Gambler stopped and lost for day"$day" amount  !!" $totalAmount
+       result="lost"
    fi
+      echo "Gambler stopped and " $result " for day"$DAY" amount  !!" $TOTAL_AMOUNT
 done
